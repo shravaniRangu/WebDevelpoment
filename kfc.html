@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>KFC | India</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <style>
+            #imgTop{
+                width: 1110px;
+                height: 300px;
+            }
+            #dialog{
+                width: 300px;
+                height: 300px;
+                margin-top:60px;
+                margin-left: 600px;
+                position: fixed;
+            }
+        </style>
+        <script type="text/javascript">
+        function CloseDialog(){
+            document.getElementById("dialog").style.display="none";
+        }
+        function showDialog(){
+           document.getElementById("dialog").style.display="block";
+            document.getElementById("lblName").innerHTML="Hello..!"+ document.getElementById("txtName").value;
+
+              var mealName="";
+              var adonName="";
+              var mealCost=0;
+              var adonCost=0;
+
+              var burger = document.getElementById("optBurger");
+              var roller = document.getElementById("optRoller");
+
+              var wings = document.getElementById("optWings");
+              var krusher = document.getElementById("optKrusher");
+              
+              if(burger.checked) {
+                  mealName = burger.value;
+                  mealCost = 120;
+              } 
+              if(roller.checked) {
+                  mealName= roller.value;
+                  mealCost = 100;
+              }
+              if(wings.checked) {
+                  adonName += wings.value + "<br>";
+                  adonCost = 80;
+                  mealCost = mealCost + adonCost;
+              }
+              if(krusher.checked) {
+                  adonName += krusher.value + "<br>";
+                  adonCost = 40;
+                  mealCost = mealCost + adonCost;
+              }
+              document.getElementById("lblMeal").innerHTML = mealName;
+              document.getElementById("lblAdon").innerHTML = adonName;
+              document.getElementById("lblAmount").innerHTML = "You have to Pay :" + "&#8377;" + mealCost + "/-";
+
+          }
+        </script>
+    </head>
+    <body onload="CloseDialog()">
+        <div style="margin-top: 30px;" class="container text-center">
+                <div id="dialog">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 id="lblName"></h3>
+                            </div>
+                            <div class="card-body">
+                                <dl>
+                                    <dt>Meal Name</dt>
+                                    <dd id="lblMeal"></dd>
+                                    <dt>Ad-ON's</dt>
+                                    <dd id="lblAdon"></dd>
+                                </dl>
+                            </div>
+                            <div class="card-footer">
+                                <h3 id="lblAmount"></h3>
+                                <input type="button" value="OK" class="btn btn-outline-danger"  onclick="CloseDialog()">
+                            </div>
+                        </div>
+                    </div>
+            <header>
+                <div>
+                    <img id="imgTop" src="images/kfcTop.png" class="img-thumnail">
+                </div>
+            </header>
+            <section>
+                <div style="margin-top: 10px;" class="bg-danger text-white">
+                    <h3 style="text-align: center;">Customer Details</h3>
+                    <div>
+                        <table align="center">
+                            <tr>
+                                <td>Name</td>
+                                <td>
+                                    <input type="text" class="form-conreol" id="txtName">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div style="margin-top: 10px;" align="center" class="bg-danger text-white">
+                        <h3>Select Meal</h3>
+                        <div class="card-deck" align="center">
+                            <div id="card">
+                                <div class="card-header">
+                                    <h3>OMG Burger</h3>
+                                </div>
+                                <div class="card-body">
+                                    <img src="images/burger.jpg" style="width: 500px; height: 350px;">
+                                    <input type="radio" value="OMG Burger" name="meal" id="optBurger" class="form-control" >
+         
+         
+         
+         
+                                </div>
+                                <div class="card-footer">
+                                    <h3>&#8377;120/-</h3>
+                                </div>
+                            </div>
+                            <div id="card">
+                                    <div class="card-header">
+                                            <h3>OMG Roller</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="images/roller.jpg" style="width: 500px;height: 350px;">
+                                            <input type="radio" value="OMG roller" name="meal" id="optRoller" class="form-control" >
+                                        </div>
+                                        <div class="card-footer">
+                                            <h3>&#8377;120/-</h3>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="bg-danger text-white" style="margin-top: 10px;">
+                    <h3>Add On</h3>
+                    <div class="card-deck" align="center">
+                            <div id="card">
+                                    <div class="card-header">
+                                            <h3>Hot Wings</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="images/wings.jpg" style="width: 500px;height: 350px;">
+                                            <input type="checkbox" value="HOT Wings"  id="optWings" class="form-control" >
+                                        </div>
+                                        <div class="card-footer" >
+                                            <h3>&#8377;80/-</h3>
+                                        </div>
+                            </div>
+                            <div id="card" >
+                                    <div class="card-header">
+                                            <h3>Krusher Brounie</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <img src="images/krusher.jpg" style="width: 500px;height: 350px;">
+                                            <input type="checkbox" value="Krusher Brouwnie "  id="optkrusher" class="form-control">
+                                        </div>
+                                        <div class="card-footer">
+                                            <h3>&#8377;40/-</h3>
+                                        </div>
+                            </div>
+                    </div>
+                </div>
+                <div id="dialog">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 id="lblName"></h3>
+                    </div>
+                    <div class="card-body">
+                        <dl>
+                            <dt>Meal Name</dt>
+                            <dd id="lblMeal"></dd>
+                            <dt>Ad-On</dt>
+                            <dd id="adonMeal"></dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer">
+                        <h3 id="lblAmount"></h3>
+                        <input type="button" class="btn btn-outline-danger" value="OK" onclick="CloseDialog">
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                    <input type="button" value="Place Order" class="btn btn-outline-danger" onclick="showDialog()">
+                </div>
+            </section>
+            
+        </div>
+    </body>
+</html>
