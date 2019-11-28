@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hotel Registration Form</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script type="text/javascript">
+        function bodyLoad(){
+            document.getElementById("billSummary").style.display="none";
+        }
+        function CloseBill(){
+            bodyLoad();
+        }
+        function showBill(){
+            var Uname=document.getElementById("txtName").value;
+            var Date=document.getElementById("txtDate").value;
+            var Days=document.getElementById("txtDays").value;
+            var People=document.getElementById("txtPeople").value;
+            var Delux=document.getElementById("txtDelux");
+            var Suit=document.getElementById("txtSuit");
+            var Ac=document.getElementById("txtAc");
+            var Locker=document.getElementById("txtLocker");
+            var Guest=document.getElementById("txtGuest").value;
+            var AdvancedAmount=document.getElementById("txtAmount").value;
+            
+            if(Uname ==""){
+                alert("Please Enter Name");
+                return false;
+            }
+            if(Date ==""){
+                alert("Please Enter Check In Date");
+                return false;
+            }
+            if(Days ==""){
+                alert("Please Enter Days");
+                return false;
+            }
+            if(People ==""){
+                alert("Please Enter How Many Persons");
+                
+                return false;
+            }
+            
+            if(AdvancedAmount.length=="") 
+            {
+                alert("please Enter Amount");
+  
+            }else{
+                document.getElementById("billSummary").style.display="block";
+            }
+            var RoomType="";
+            var RoomCost=0;
+            var AcCost=0;
+            var LockerCost=0;
+            var Aminities="";
+            if(Delux.checked){
+                RoomType = Delux.value;
+                RoomCost = 2500;
+            }
+            if(Suit.checked){
+                RoomType = Suit.value;
+                RoomCost = 4000;
+            }
+            if(Ac.checked){
+                Aminities += Ac.value + "<br>";
+                AcCost = 1000;
+                RoomCost = RoomCost + AcCost;
+            }
+            if(Locker.checked){
+                Aminities += Locker.value + "<br>";
+                LockerCost = 500;
+
+                RoomCost = RoomCost + LockerCost;
+                var TotalCost= RoomCost*Days;
+                TotalCost = TotalCost + 500*Guest;
+            }
+            var Balance = TotalCost - AdvancedAmount;
+            document.getElementById("lblName").innerHTML=Uname;
+            document.getElementById("lblDate").innerHTML=Date;
+            document.getElementById("lblDays").innerHTML=Days;
+            document.getElementById("lblppl").innerHTML=People;
+            document.getElementById("lblAmount").innerHTML=AdvancedAmount;
+            document.getElementById("lblRoom").innerHTML=RoomType;
+            document.getElementById("lblAminity").innerHTML=Aminities;
+            document.getElementById("lblTotal").innerHTML=TotalCost;
+            document.getElementById("lblBalance").innerHTML=Balance;
+        }
+        </script>
+        <style>
+            #billSummary{
+                width: 300px;
+                border-radius: 5px;
+                
+                margin-left: 400px;
+                position: fixed;
+                border-color: white;
+                border: 5px;
+            }
+        </style>
+    </head>
+    <body onload="bodyLoad()">
+        <div class="container" id="bodyContent">
+            <div id="billSummary"  class="bg-secondary text-white">
+                    <h4<B>CUSTOMER INFO</B></h4>
+                    <div style="float: right;"><input type="button" value="X" onclick="CloseBill()" class="btn btn-danger"></div>
+                    <table cellpadding="5"> 
+                            <tr>
+                                    <td>
+                                        Name -
+                                    </td>
+                                    <td>
+                                        <label id="lblName"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Check In Date       -
+                                    </td>
+                                    <td>
+                                            <label id="lblDate"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Total no.of Days        -
+                                    </td>
+                                    <td>
+                                            <label id="lblDays"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Total no.of people      -
+                                    </td>
+                                    <td>
+                                            <label id="lblppl"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                            Room Type       -
+                                        </td>
+                                        <td>
+                                                <label id="lblRoom"></label>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                            Aminities       -
+                                        </td>
+                                        <td>
+                                                <label id="lblAminity"></label>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                            Advanced Amount     -
+                                        </td>
+                                        <td>
+                                                <label id="lblAmount"></label>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                            Total Amount        -
+                                        </td>
+                                        <td>
+                                                <label id="lblTotal"></label>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                            Balance Anount      -
+                                        </td>
+                                        <td>
+                                                <label id="lblBalance"></label>
+                                        </td>
+                                </tr>
+                    </table>
+                    
+                    
+            </div>
+            <div align="center">
+            <h2 style="margin-top: 20px; position: fixed;margin-left:750px;" class="text-primary"> </h2>
+            </div>
+            <header style="margin-top: 5px;">
+                <img src="images/BannerTop.jpg" class="img-fluid">
+            </header>
+            <section >
+                    
+                <div class="bg-info text-white" id="fstPart" align="center" style="margin-top: 10px; border-radius: 5px;">
+                        <h2><B>CUSTOMER INFO</B></h2>
+                        <table cellpadding="5"> 
+                                <tr>
+                                        <td>
+                                            Name 
+                                        </td>
+                                        <td>
+                                            <input type="text" size="30" class="form-control" id="txtName" placeholder="Enter Customer Name..">
+                                        </td>
+                                    </tr>
+                                    <td>
+                                            Check In Date
+                                        </td>
+                                        <td>
+                                            <input type="date" size="30" class="form-control" id="txtDate" >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <td>
+                                            Total no.of Days
+                                        </td>
+                                        <td>
+                                            <input type="text" size="30" class="form-control" id="txtDays" placeholder="Enter How many Days">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <td>
+                                            Total no.of people
+                                        </td>
+                                        <td>
+                                            <input type="text" size="30" class="form-control" id="txtPeople" placeholder="Enter how many persons">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                                Total No.of Guests
+                                            </td>
+                                            <td>
+                                                <input type="text" size="30" class="form-control" id="txtGuest" placeholder="Enter how many Guests">
+                                            </td>
+                                    </tr>
+                        </table>
+                        
+                </div>
+                <div class="bg-info" id="scndPart" align="center" style="margin-top: 10px; border-radius:5px;">
+                    <h2 class="text-white"><b>SELECT ROOM</b></h2>
+                    <div class="card-deck text-info">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Delux Room</h2>
+                            </div>
+                            <div class="card-body">
+                                <img src="images/Delux.jpg" class="img-fluid" style="height: 300px;">
+                                <input type="radio" name="room" id="txtDelux" class="form-control" value="Delux Room">
+                                
+                            </div>
+                            <div class="card-footer">
+                               <h2> &#8377;2500/-</h2>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Suit Room</h2>
+                            </div>
+                            <div class="card-body">
+                                <img src="images/suit.jpg" class="img-fluid" style="height: 300px;">
+                                <input type="radio" name="room" id="txtSuit" class="form-control" value="Suit Room">
+                            </div>
+                            <div class="card-footer">
+                               <h2>&#8377;4000/-</h2> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-info" id="thirdPart" align="center" style="margin-top: 10px;">
+                    <h2 class="text-white"><b>AMINITIES</b></h2>
+                    <div class="card-deck text-info">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>AC</h2>
+                            </div>
+                            <div class="card-body">
+                                <img src="images/ac.jpg" class="img-fluid" style="height: 300px;">
+                                <input type="checkbox"  id="txtAc" class="form-control" value="AC">
+                                
+                            </div>
+                            <div class="card-footer">
+                               <h2> &#8377;1000/-</h2>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Locker</h2>
+                            </div>
+                            <div class="card-body">
+                                <img src="images/locker.jpeg" class="img-fluid" style="height: 300px;">
+                                <input type="checkbox"  id="txtLocker" class="form-control" value="Locker">
+                            </div>
+                            <div class="card-footer">
+                               <h2>&#8377;500/-</h2> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-info text-white" align="center">
+                    <h2><b>Advance Amount</b></h2>
+                    <table cellpadding=5px>
+                        <tr>
+                            <td>Amout</td>
+                            <td>
+                                <input type="text" id="txtAmount" size="30" class="form-control">
+                            </td>
+                        </tr>
+                    </table>
+                </div>    
+            </section>
+            <footer style="margin-top: 10px;" align="center">
+                <input type="button" class="btn btn-info btn-lg" onclick="showBill()" value="Register">
+            </footer>
+        </div>
+    </body>
+</html>
